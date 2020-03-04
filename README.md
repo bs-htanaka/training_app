@@ -146,3 +146,27 @@ $ echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
 $ cat /proc/sys/fs/inotify/max_user_watches
 ```
 Dockerfileに組み込みたいが、Privilegedで起動扠せねばならぬ問題があるため、起動時に叩くシェルを作るか
+
+
+
+## usersテーブルスキーマ
+
+| カラム名 | 型 | 説明 |
+|:--|:--|:--|
+| id | integer | ユーザに対して一意の識別番号 |
+| name | string | ユーザ名 |
+| password | string | パスワード |
+| created_at | datetime | ユーザの登録日時 |
+| updated_at | datetime | ユーザの最終更新日時 |
+
+
+## tasksテーブルスキーマ
+
+| カラム名 | 型 | 説明 |
+|:--|:--|:--|
+| id | integer | タスクに対して一意の識別番号 |
+| user_id | integer | どのユーザがタスクを作成したかを識別する |
+| task | string | タスクの内容 |
+| limit_day | date | タスクの終了期限 |
+| label | string | タスクの分類 |
+| status | string | タスクのステータス（未着手・着手・完了） |
