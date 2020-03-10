@@ -156,6 +156,7 @@ Dockerfileに組み込みたいが、Privilegedで起動扠せねばならぬ問
 | id | integer | ユーザに対して一意の識別番号 |
 | name | string | ユーザ名 |
 | password | string | パスワード |
+| password_confirm | string | パスワード |
 | created_at | datetime | ユーザの登録日時 |
 | updated_at | datetime | ユーザの最終更新日時 |
 
@@ -166,7 +167,10 @@ Dockerfileに組み込みたいが、Privilegedで起動扠せねばならぬ問
 |:--|:--|:--|
 | id | integer | タスクに対して一意の識別番号 |
 | user_id | integer | どのユーザがタスクを作成したかを識別する |
-| task | string | タスクの内容 |
+| title | string | タスクのタイトル |
+| description | string | タスクの内容 |
 | limit_day | date | タスクの終了期限 |
-| label | string | タスクの分類 |
-| status | string | タスクのステータス（未着手・着手・完了） |
+| category | enum | タスクの分類 |
+| status | enum | タスクのステータス（未着手・着手・完了） |
+| created_at | datetime | ユーザの登録日時 |
+| updated_at | datetime | ユーザの最終更新日時 |
