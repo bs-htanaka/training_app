@@ -9,6 +9,10 @@ gem 'rails', '~> 5.2.3'
 gem 'pg', '~> 1.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+#ERB形式をslim形式に変換してくれるhtml2slim
+gem 'html2slim'
+# Use Slim
+gem 'slim-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
