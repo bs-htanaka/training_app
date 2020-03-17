@@ -12,9 +12,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = params[:task].permit(:title, :description)
-    Task.create(task)
-    redirect_to root_path, notice: "タスク「#{task.title}」を登録しました"
+    @task = Task.create(task_params)
+    if @task.save
+      redirect_to root_path, notice: "タスク「#{@task.title}」を登録しました"
+    else
+      render action: :new
+    end
   end
 
   def edit
@@ -23,7 +26,7 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
-    task.update(params[:task].permit(:title, :description))
+    task.update(task_params)
     redirect_to root_path, notice: "タスク「#{task.title}」を編集しました"
   end
 
@@ -31,6 +34,12 @@ class TasksController < ApplicationController
     task = Task.find(params[:id])
     task.destroy
     redirect_to root_path, notice: "タスク「#{task.title}」を削除しました"
+  end
+
+private
+
+  def task_params
+    params[:task].permit(:title, :description)
   end
 
 end
