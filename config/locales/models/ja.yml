@@ -6,5 +6,6 @@ ja:
       task:
         title: タイトル
         description: 内容
+        limit_day: 終了期限
 
         
