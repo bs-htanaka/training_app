@@ -16,6 +16,7 @@ require 'database_cleaner'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  ENV["RAILS_ENV"] = 'test'
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_handless
   end

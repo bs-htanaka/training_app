@@ -40,7 +40,11 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params[:task].permit(:title, :description, :limit_day)
+    params[:task].permit(:title, :description, :limit_day, :status)
+  end
+
+  def search_params
+    params.require(:q).permit(:title,:status)
   end
 
 end
