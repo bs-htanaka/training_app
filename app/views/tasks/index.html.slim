@@ -21,6 +21,7 @@ table
       th 更新日時
       th= sort_link(@q,:limit_day)
       th 進捗状況
+      th= sort_link(@q,:priority)
 
 
   tbody
@@ -32,6 +33,7 @@ table
         td = task.updated_at
         td = task.limit_day
         td = task.status
+        td = task.priority
         td = link_to "詳細", task_path(task)
         td = link_to "編集", edit_task_path(task)
         td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}

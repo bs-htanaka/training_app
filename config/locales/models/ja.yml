@@ -7,5 +7,6 @@ ja:
         title: タイトル
         description: 内容
         limit_day: 終了期限
+        priority: 優先順位
 
         
