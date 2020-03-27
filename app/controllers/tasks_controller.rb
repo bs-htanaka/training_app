@@ -12,8 +12,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.create(task_params)
-    redirect_to root_path, notice: "タスク「#{task.title}」を登録しました"
+    @task = Task.create(task_params)
+    if @task.save
+      redirect_to root_path, notice: "タスク「#{@task.title}」を登録しました"
+    else
+      render action: :new
+    end
   end
 
   def edit
@@ -21,9 +25,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update(task_params)
-    redirect_to root_path, notice: "タスク「#{task.title}」を編集しました"
+    @task = Task.find(params[:id])
+    @task.update(task_params)
+    redirect_to root_path, notice: "タスク「#{@task.title}」を編集しました"
   end
 
   def destroy
