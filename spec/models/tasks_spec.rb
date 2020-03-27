@@ -30,7 +30,7 @@ RSpec.describe Task, type: :model do
   end
 
   describe "終了期限で並び替えできている" do 
-    context "DBに値ある時" do
+    context "タスクの作成" do
       create(:task, title: 'task2', description: 'task2', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 1.days)
       create(:task, title: 'task3', description: 'task3', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 2.days)
       create(:task, title: 'task4', description: 'task4', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 3.days)
