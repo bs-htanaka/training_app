@@ -29,10 +29,15 @@ RSpec.describe Task, type: :model do
 
   end
 
-  it "終了期限で並び替えできている" do
-    create(:task, title: 'task2', description: 'task2', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 1.days)
-    create(:task, title: 'task3', description: 'task3', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 2.days)
-    create(:task, title: 'task4', description: 'task4', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 3.days)
+  describe "終了期限で並び替えできている" do 
+    context "DBに値ある時" do
+      create(:task, title: 'task2', description: 'task2', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 1.days)
+      create(:task, title: 'task3', description: 'task3', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 2.days)
+      create(:task, title: 'task4', description: 'task4', created_at: Time.now, updated_at: Time.now, limit_day: Time.current + 3.days)
+    end
+  end
+
+  it "降順で表示" do
     tasks = Task.all.order(id: "DESC")
     expect(tasks[0][:id]).to eq 3
   end
