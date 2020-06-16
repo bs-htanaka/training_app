@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'ransack'
 gem 'factory_bot'
+gem 'kaminari'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
