@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Task, type: :model do
+RSpec.describe TasksController, type: :model do
   before do
     FactoryBot.create(:task, title: "task1")
     FactoryBot.create(:task, title: "task2")
