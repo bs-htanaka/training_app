@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'ransack'
 gem 'factory_bot'
 gem 'kaminari'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
