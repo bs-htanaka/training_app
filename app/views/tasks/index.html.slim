@@ -4,6 +4,7 @@
 h1 Task一覧
 
 = link_to '新規登録', new_task_path
+= link_to 'ログアウト', logout_path, method: :delete
 
 = search_form_for(@q, url:tasks_path) do |f|
   = f.label :title_cont, 'タイトル'
