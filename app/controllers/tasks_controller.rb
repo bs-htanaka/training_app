@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
+  PER = 3
   def index
-    @tasks = Task.all.order(created_at: "DESC")
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = current_user.tasks.page(params[:page]).per(PER)
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def new
@@ -12,16 +14,16 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = Task.new(task_params.merge(user_id: current_user.id))
     if @task.save
       redirect_to root_path, notice: "タスク「#{@task.title}」を登録しました"
     else
-      render action: :new
+      render :new
     end
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
@@ -31,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = Task.find(params[:id])
+    task = current_user.tasks.find(params[:id])
     task.destroy
     redirect_to root_path, notice: "タスク「#{task.title}」を削除しました"
   end
@@ -39,7 +41,7 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params[:task].permit(:title, :description)
+    params[:task].permit(:title, :description, :limit_day, :status,:priority)
   end
 
 end
