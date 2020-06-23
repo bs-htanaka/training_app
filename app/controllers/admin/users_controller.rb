@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :require_admin
   def index
     @users = User.all.eager_load(:tasks)
   end
@@ -37,8 +37,11 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_path, notice: "ユーザー「#{@user.name}」を削除しました"
+    if @user.destroy
+      redirect_to admin_users_path, notice: "ユーザー「#{@user.name}」を削除しました"
+    else
+      redirect_to admin_users_path, notice: "管理者ユーザーが1人しかいないため「#{@user.name}」を削除できません"
+    end
   end 
 
 private
