@@ -1,0 +1,21 @@
+= form_for [:admin, @user] do |f|
+  - if @user.errors.any?
+    ul
+      - @user.errors.full_messages.each do |message|
+        li = message
+
+h1 ユーザー新規登録
+= form_with model: [:admin, @user], local: true do |f|
+  .form_group
+    = f.label :name
+    = f.text_field :name
+  .form_group
+     = f.label :email
+     = f.text_field :email
+  .form_group
+     = f.label :password
+     = f.password_field :password
+  .form_group
+     = f.label :password_confirmation
+     = f.password_field :password_confirmation
+  = f.submit '登録'

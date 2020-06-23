@@ -1,0 +1,16 @@
+div.fontsize_midium.margintop_big
+  | 管理画面：ユーザー一覧
+- @users.each do |user|
+  div.margintop_big.card.fontsize_small.padding_midium
+    | ID:
+    = user.id
+    | :
+    = user.name
+    | :
+    = user.created_at
+    | タスク数 :
+    = user.tasks.size
+    |
+    = link_to '編集', edit_admin_user_path(user)
+    = link_to '詳細', admin_user_path(user)
+    = link_to '削除', admin_user_path(user), method: :delete, data: {confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"}
