@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | App
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body
+      h3 タスク管理アプリ
+      ul
+        - if current_user
+          li = link_to 'タスク一覧', tasks_path
+          - if current_user.admin?
+            li = link_to 'ユーザー一覧', admin_users_path
+          li = link_to 'ログアウト', logout_path, method: :delete
+        -else
+          li = link_to 'ログイン', login_path
+      = yield
