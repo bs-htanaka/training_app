@@ -14,6 +14,12 @@ h1 タスク登録
   = f.text_field :title
   = f.label :description
   = f.text_field :description
+  = f.label :limit_day
+  = f.date_field :limit_day
+  = f.label :status
+  = f.select :status, options_for_select(Task.statuses.map{|k,v| [("#{k}"), k]}, selected: "one") 
+  = f.label :priority
+  = f.select :priority, options_for_select(Task.priorities.map{|k,v| [("#{k}"), k]}, selected: "one") 
   = f.submit
 
 
