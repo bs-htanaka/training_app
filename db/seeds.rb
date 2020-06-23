@@ -12,3 +12,7 @@ User.create!(
     password: 'pass',
     password_confirmation: 'pass'
  )
+
+ Label.create!(
+    name: '準備'
+ )

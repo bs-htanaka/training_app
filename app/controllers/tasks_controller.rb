@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
-  PER = 3
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = current_user.tasks.page(params[:page]).per(PER)
+    @tasks = @q.result.includes(:labels, :task_labels).page(params[:page])
+    @labels = Label.pluck(:name,:id)
   end
 
   def show
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.update(task_params)
     redirect_to root_path, notice: "タスク「#{@task.title}」を編集しました"
   end
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params[:task].permit(:title, :description, :limit_day, :status,:priority)
+    params[:task].permit(:title, :description, :limit_day, :status, :priority, :label, label_ids: [])
   end
 
 end
