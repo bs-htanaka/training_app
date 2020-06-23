@@ -10,12 +10,16 @@ h1 ユーザー新規登録
     = f.label :name
     = f.text_field :name
   .form_group
-     = f.label :email
-     = f.text_field :email
+    = f.label :email
+    = f.text_field :email
+  .form_check
+    = f.label :admin, class: 'form-check-label' do
+      = f.check_box :admin
+      |　管理者権限
   .form_group
-     = f.label :password
-     = f.password_field :password
+    = f.label :password
+    = f.password_field :password
   .form_group
-     = f.label :password_confirmation
-     = f.password_field :password_confirmation
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
   = f.submit '編集'
