@@ -1,0 +1,13 @@
+- if flash[:notice]
+  .alert.alert-success
+    = flash[:notice]
+
+h1 ログイン
+
+= form_with scope: :session, local: true do |f|
+  = f.label :email, 'メールアドレス'
+  = f.text_field :email
+  = f.label :password, 'パスワード'
+  = f.text_field :password
+  
+  = f.submit 'ログインする'
