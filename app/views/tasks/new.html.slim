@@ -1,19 +1,34 @@
+.container
 = form_for @task do |f|
   - if @task.errors.any?
-    ul
+    ul#errror_explanation
       - @task.errors.full_messages.each do |message|
         li = message 
 
 h1 タスク登録
 
-= link_to '一覧', tasks_path
+.nav.justify-content-end
+= link_to '一覧', tasks_path, class: 'nav-link'
 
 = form_with model: @task, local: true do |f|
-
+.form-group
   = f.label :title
   = f.text_field :title
+.form-group
   = f.label :description
   = f.text_field :description
-  = f.submit
+.form-group
+  = f.label :limit_day
+  = f.date_field :limit_day
+.form-group
+  = f.label :status
+  = f.select :status, options_for_select(Task.statuses.map{|k,v| [("#{k}"), k]}, selected: "one") 
+.form-group
+  = f.label :priority
+  = f.select :priority, options_for_select(Task.priorities.map{|k,v| [("#{k}"), k]}, selected: "one") 
+.form-group
+  = f.label :label
+  = f.collection_check_boxes(:label_ids, Label.all, :id, :name)
+  = f.submit "作成", class: 'btn btn-primary'
 
 

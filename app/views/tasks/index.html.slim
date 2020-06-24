@@ -1,26 +1,42 @@
-- if flash[:notice]
-  .alert.alert-success
-    = flash[:notice]
+
 h1 Task一覧
 
 = link_to '新規登録', new_task_path
+= link_to 'ログアウト', logout_path, method: :delete
 
-table
-  thead
+= search_form_for(@q, url:tasks_path) do |f|
+  = f.label :title_cont, 'タイトル'
+  = f.search_field :title_cont
+  = f.label :status, 'ステータス'
+  = f.select :status_eq, options_for_select(Task.statuses)
+  = f.label :labels_id_eq, 'ラベル'
+  = f.select :labels_id_eq, Label.order(:name).map{ |m| [m.name,m.id]}, {include_blank: true}
+  = f.submit
+
+.mb-3
+table.table.table-striped
+  thead.table-default
     tr
       th Title
       th Description
-      th 登録日時
-      th 更新日時
-
+      th = sort_link(@q, :limit_day, "limit_day")
+      th 進捗度
+      th = sort_link(@q, :priority, "priority")
+      th ラベル
 
   tbody
     - @tasks.each do |task|
       tr
         td = task.title
         td = task.description
-        td = task.created_at
-        td = task.updated_at
+        td = task.limit_day
+        td = task.status
+        td = task.priority
+        td
+          - task.labels.each do |label|
+            = label.name
         td = link_to "詳細", task_path(task)
         td = link_to "編集", edit_task_path(task)
-        td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}
+        td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}, class: 'btn btn-danger'
+
+    = paginate @tasks

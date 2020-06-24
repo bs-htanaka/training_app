@@ -1,4 +1,29 @@
 h1 Task詳細
 
-p = @task.title
-p = @task.description
+= link_to '一覧', tasks_path, class: 'nav-link'
+table.table.table-hover
+  tboby
+    tr
+      th= Task.human_attribute_name(:id)
+      td= @task.id
+    tr
+      th= Task.human_attribute_name(:title)
+      td= @task.title
+    tr
+      th= Task.human_attribute_name(:description)
+      td= @task.description
+    tr
+      th= Task.human_attribute_name(:limit_day)
+      td= @task.limit_day
+    tr
+      th= Task.human_attribute_name(:status)
+      td= @task.status
+    tr
+      th= Task.human_attribute_name(:priority)
+      td= @task.priority
+    tr
+      th= Task.human_attribute_name(:created_at)
+      td= @task.created_at
+    tr
+      th= Task.human_attribute_name(:updated_at)
+      td= @task.updated_at
