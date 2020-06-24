@@ -15,14 +15,16 @@ h1 Task一覧
   = f.select :labels_id_eq, Label.order(:name).map{ |m| [m.name,m.id]}, {include_blank: true}
   = f.submit
 
-table
-  thead
+.mb-3
+table.table.table-striped
+  thead.table-default
     tr
       th Title
       th Description
       th = sort_link(@q, :limit_day, "limit_day")
       th 進捗度
       th = sort_link(@q, :priority, "priority")
+      th ラベル
 
   tbody
     - @tasks.each do |task|
@@ -37,6 +39,6 @@ table
             = label.name
         td = link_to "詳細", task_path(task)
         td = link_to "編集", edit_task_path(task)
-        td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}
+        td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}, class: 'btn btn-danger'
 
     = paginate @tasks
