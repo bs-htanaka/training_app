@@ -1,17 +1,23 @@
-div.fontsize_midium.margintop_big
-  | 管理画面：ユーザー一覧
-  | ようこそ「#{current_user.name}」
-- @users.each do |user|
-  div.margintop_big.card.fontsize_small.padding_midium
-    | ID:
-    = user.id
-    | :
-    = user.name
-    | :
-    = user.created_at
-    | タスク数 :
-    = user.tasks.size
-    |
-    = link_to '編集', edit_admin_user_path(user)
-    = link_to '詳細', admin_user_path(user)
-    = link_to '削除', admin_user_path(user), method: :delete, data: {confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"}
+
+  h2 ユーザー一覧
+  | ようこそ「#{current_user.name}さん」
+
+.mb-3
+table.table.table-striped
+  thead.table-default
+    tr
+      th ユーザーID
+      th 名前
+      th メールアドレス
+      th タスク数
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.id
+        td = user.name
+        td = user.email
+        td = user.tasks.size
+        td  = link_to '編集', edit_admin_user_path(user)
+        td  = link_to '詳細', admin_user_path(user)
+        td  = link_to '削除', admin_user_path(user), method: :delete, data: {confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
