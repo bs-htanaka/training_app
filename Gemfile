@@ -32,7 +32,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'ransack'
-gem 'factory_bot'
 gem 'kaminari'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
@@ -51,6 +50,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do

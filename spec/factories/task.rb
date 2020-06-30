@@ -1,8 +1,17 @@
 FactoryBot.define do
-  factory :task do
+  
+  factory :user, class: User do
     sequence(:id) { |n| n }
-    title {'テストをかく'}
-    description {'テスト実行'}
+    sequence(:name) { |n| "name_#{n}" }
+    email { Faker::Internet.free_email }
+    sequence(:password_digest) { |n| "pass_#{n}" }
+  end
+
+  factory :task, class: Task do
+    title { "task" }
+    description {"taskの内容"}
     sequence(:limit_day) { |n| (Time.zone.today + n.days).to_s }
+    status { "未着手" }
+    user
   end
 end
