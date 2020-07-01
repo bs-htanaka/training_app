@@ -10,7 +10,7 @@ FactoryBot.define do
   factory :task, class: Task do
     title { "task" }
     description {"taskの内容"}
-    sequence(:limit_day) { |n| (Time.zone.today + n.days).to_s }
+    sequence(:limit_day) { |n| (Date + n.days).to_s }
     status { "未着手" }
     user
   end
