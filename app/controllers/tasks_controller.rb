@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @sort = Task.ransack(params[:q])
+    @tasks = @sort.result(distinct: true)
   end
 
   def show
