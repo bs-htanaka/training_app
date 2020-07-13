@@ -30,13 +30,13 @@ RSpec.describe Task, type: :model do
   describe "タスクを終了期限にソート" do
     before do
       tasks = [
-        create(:task,limit_day: '2020-03-20 00:00:00.000000000 +0900'),
-        create(:task,limit_day: '2020-03-22 00:00:00.000000000 +0900')
+        create(:task,limit_day: '2020-03-20 00:00:00.000000000 +0000'),
+        create(:task,limit_day: '2020-03-22 00:00:00.000000000 +0000')
       ]
     end
       it "終了期限が降順になっている" do
         tasks = Task.all.order(limit_day: "DESC")
-        expect(tasks[0][:limit_day]).to eq '2020-03-22 00:00:00.000000000 +0900'
+        expect(tasks[0][:limit_day]).to eq '2020-03-22 00:00:00.000000000 +0000'
       end
     end
     
