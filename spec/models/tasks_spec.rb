@@ -26,7 +26,18 @@ RSpec.describe Task, type: :model do
           expect(task).to_not be_valid
         end
       end
-
   end
-
+  describe "タスクを終了期限にソート" do
+    before do
+      tasks = [
+        create(:task,limit_day: Time.zone.now.to_s),
+        create(:task,limit_day: Time.zone.now - 1.day)
+      ]
+    end
+      it "終了期限が降順になっている" do
+        tasks = Task.all.order(limit_day: "DESC")
+        expect(tasks[0][:limit_day]).to eq Time.zone.now.to_s
+      end
+    end
+    
 end
