@@ -28,10 +28,10 @@ table
       tr
         td = task.title
         td = task.description
-        td = task.limit_day
+        td = task.limit_day.strftime("%Y/%m/%d %H:%M")
         td = task.status
-        td = task.created_at
-        td = task.updated_at
+        td = task.created_at.strftime("%Y/%m/%d %H:%M")
+        td = task.updated_at.strftime("%Y/%m/%d %H:%M")
         td = link_to "詳細", task_path(task)
         td = link_to "編集", edit_task_path(task)
         td = link_to "削除", task, method: :delete, data: {confirm: "タスク#{task.title}を削除します。よろしいですか？"}
