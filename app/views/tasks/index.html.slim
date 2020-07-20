@@ -5,7 +5,7 @@ h1 Task一覧
 
 = link_to '新規登録', new_task_path
 
-= search_form_for(@q, url:tasks_path) do |f|
+= search_form_for(@query, url:tasks_path) do |f|
   = f.label :title_cont, 'タイトル'
   = f.search_field :title_cont
   = f.label :status, 'ステータス'
@@ -17,7 +17,7 @@ table
     tr
       th Title
       th Description
-      th = sort_link(@q, :limit_day, "limit_day")
+      th = sort_link(@query, :limit_day, "limit_day")
       th 進捗度
       th 登録日時
       th 更新日時
